@@ -2,7 +2,9 @@ import express from "express";
 import cors from "cors";
 import { Mongo } from "./database/mongo.js";
 import { config } from "dotenv";
+
 import authRouter from "./auth/auth.js";
+import usersRouter from "./routes/users.js";
 
 config();
 // Load environment variables from .env file
@@ -32,6 +34,7 @@ async function main() {
   });
 
   app.use("/auth", authRouter);
+  app.use("/users", usersRouter);
 
   app.listen(port, () => {
     console.log(`Server running on: http://${hostname}:${port}`);
